@@ -18,7 +18,7 @@ public class FF_PugiXml : ModuleRules
             bUseRTTI = true;
         }
 
-        PrivateIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty", "pugixml"));
+        PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty", "pugixml"));
 
         PublicDependencyModuleNames.AddRange(
 			new string[]
