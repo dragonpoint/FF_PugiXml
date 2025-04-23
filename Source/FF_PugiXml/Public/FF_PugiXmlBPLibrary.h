@@ -97,8 +97,8 @@ class UFF_PugiXmlBPLibrary : public UBlueprintFunctionLibrary
 	* @param Parent_Node (Optional and can be nullptr): If this is nullptr, added node will be direct chil of root or scheme element (if it is valid.)
 	* @param Anchor_Node (Optional and can be nullptr): This should be one of children of "Parent Node" and you should use it only if you want to use "insert" features.
 	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Add Node Element", Keywords = "pugixml, xml, document, node, add, element"), Category = "Frozen Forest|FF_PugiXml|Write")
-	static FF_PUGIXML_API bool PugiXml_Node_Add_Element(UFFPugiXml_Node*& Out_Node, EPugiXmlAddTypes AddType, UFFPugiXml_Doc* In_Doc, UFFPugiXml_Node* Parent_Node, UFFPugiXml_Node* Anchor_Node, FString NodeName, FString NodeValue, TMap<FString, FString> In_Attributes);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Add Node Element", Keywords = "pugixml, xml, document, node, add, element", AutoCreateRefTerm = "In_Attributes"), Category = "Frozen Forest|FF_PugiXml|Write")
+	static FF_PUGIXML_API bool PugiXml_Node_Add_Element(UFFPugiXml_Node*& Out_Node, EPugiXmlAddTypes AddType, UFFPugiXml_Doc* In_Doc, UFFPugiXml_Node* Parent_Node, UFFPugiXml_Node* Anchor_Node, FString NodeName, FString NodeValue, const TMap<FString, FString>& In_Attributes);
 
 	/**
 	* @param Parent_Node (Optional and can be nullptr): If this is nullptr, added node will be direct chil of root or scheme element (if it is valid.)
@@ -179,8 +179,8 @@ class UFF_PugiXmlBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Set Value", Tooltip = "", Keywords = "pugixml, xml, document, set, node, read, value"), Category = "Frozen Forest|FF_PugiXml|Edit")
 	static FF_PUGIXML_API bool PugiXml_Set_Value(UFFPugiXml_Node* Target_Node, FString In_Value);
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Set Attributes", Tooltip = "", Keywords = "pugixml, xml, document, set, add, node, read, attribute, attributes"), Category = "Frozen Forest|FF_PugiXml|Edit")
-	static FF_PUGIXML_API bool PugiXml_Set_Attributes(UFFPugiXml_Node* Target_Node, bool bAddToStart, TMap<FString, FString> In_Attributes);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Set Attributes", Tooltip = "", Keywords = "pugixml, xml, document, set, add, node, read, attribute, attributes", AutoCreateRefTerm = "In_Attributes"), Category = "Frozen Forest|FF_PugiXml|Edit")
+	static FF_PUGIXML_API bool PugiXml_Set_Attributes(UFFPugiXml_Node* Target_Node, bool bAddToStart, const TMap<FString, FString>& In_Attributes);
 
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Pugixml - Remove Node 1", Tooltip = "It has to be direct child/parent not grand-children.", Keywords = "pugixml, xml, document, node, remove"), Category = "Frozen Forest|FF_PugiXml|Edit")
 	static FF_PUGIXML_API bool PugiXml_Node_Remove_1(UPARAM(ref)UObject*& Source, UPARAM(ref)UFFPugiXml_Node*& Delete_Target);

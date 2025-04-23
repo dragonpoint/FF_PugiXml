@@ -416,7 +416,7 @@ bool UFF_PugiXmlBPLibrary::PugiXml_Node_Add_Doctype_Auto(TArray<UFFPugiXml_Node*
 	}
 }
 
-bool UFF_PugiXmlBPLibrary::PugiXml_Node_Add_Element(UFFPugiXml_Node*& Out_Node, EPugiXmlAddTypes AddType, UFFPugiXml_Doc* In_Doc, UFFPugiXml_Node* Parent_Node, UFFPugiXml_Node* Anchor_Node, FString NodeName, FString NodeValue, TMap<FString, FString> In_Attributes)
+bool UFF_PugiXmlBPLibrary::PugiXml_Node_Add_Element(UFFPugiXml_Node*& Out_Node, EPugiXmlAddTypes AddType, UFFPugiXml_Doc* In_Doc, UFFPugiXml_Node* Parent_Node, UFFPugiXml_Node* Anchor_Node, FString NodeName, FString NodeValue, const TMap<FString, FString>& In_Attributes)
 {
 	if (!IsValid(In_Doc))
 	{
@@ -503,7 +503,7 @@ bool UFF_PugiXmlBPLibrary::PugiXml_Node_Add_Element(UFFPugiXml_Node*& Out_Node, 
 		Value_Node.set_value(TCHAR_TO_UTF8(*NodeValue));
 	}
 
-	for (TPair<FString, FString>& Pair_Attributes : In_Attributes)
+	for (const TPair<FString, FString>& Pair_Attributes : In_Attributes)
 	{
 		Out_Node->Node.append_attribute(TCHAR_TO_UTF8(*Pair_Attributes.Key)) = TCHAR_TO_UTF8(*Pair_Attributes.Value);
 	}
@@ -1390,7 +1390,7 @@ bool UFF_PugiXmlBPLibrary::PugiXml_Set_Value(UFFPugiXml_Node* Target_Node, FStri
 	}
 }
 
-bool UFF_PugiXmlBPLibrary::PugiXml_Set_Attributes(UFFPugiXml_Node* Target_Node, bool bAddToStart, TMap<FString, FString> In_Attributes)
+bool UFF_PugiXmlBPLibrary::PugiXml_Set_Attributes(UFFPugiXml_Node* Target_Node, bool bAddToStart, const TMap<FString, FString>& In_Attributes)
 {
 	if (!IsValid(Target_Node))
 	{
@@ -1408,7 +1408,7 @@ bool UFF_PugiXmlBPLibrary::PugiXml_Set_Attributes(UFFPugiXml_Node* Target_Node, 
 		return false;
 	}
 
-	for (TPair<FString, FString>& Pair_Attributes : In_Attributes)
+	for (const TPair<FString, FString>& Pair_Attributes : In_Attributes)
 	{
 		bAddToStart ? Target_Node->Node.append_attribute(TCHAR_TO_UTF8(*Pair_Attributes.Key)) = TCHAR_TO_UTF8(*Pair_Attributes.Value) : Target_Node->Node.prepend_attribute(TCHAR_TO_UTF8(*Pair_Attributes.Key)) = TCHAR_TO_UTF8(*Pair_Attributes.Value);
 	}
