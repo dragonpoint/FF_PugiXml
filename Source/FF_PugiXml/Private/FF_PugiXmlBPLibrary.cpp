@@ -138,19 +138,16 @@ bool UFF_PugiXmlBPLibrary::PugiXml_Doc_Save_Memory(TArray<uint8>& Out_Bytes, UFF
 bool UFF_PugiXmlBPLibrary::PugiXml_Doc_Save_File(UFFPugiXml_Doc* In_Doc, FString In_Path)
 {
 	if (!IsValid(In_Doc))
-	{
 		return false;
-	}
 
 	if (In_Path.IsEmpty())
-	{
 		return false;
-	}
 
 	std::stringstream StringStream;
 	In_Doc->Document.print(StringStream, "  ");
 
-	std::ofstream OutFile(TCHAR_TO_UTF8(*In_Path));
+	//std::ofstream OutFile(TCHAR_TO_UTF8(*In_Path));
+	std::ofstream OutFile(*In_Path);
 	OutFile << StringStream.str();
 	OutFile.close();
 
